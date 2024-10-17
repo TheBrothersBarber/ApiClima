@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estado del Clima</title>
-    <link rel="stylesheet" href="style2.css"> 
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
     <div class="card">
@@ -15,7 +15,7 @@
         <div id="fechaHora"></div>
     </div>
 
-    <script> 
+    <script>
         var apiKey = 'e1ee2e2b239e3c1782f4d905c76588db'; // Añade tu API key de OpenWeather aquí
         var ciudad = 'Ciudad de México'; // Cambia a la ciudad que desees consultar
         var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&appid=' + apiKey + '&units=metric&lang=es';
