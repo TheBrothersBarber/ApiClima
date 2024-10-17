@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado del Clima</title>
+</head>
+<body>
+    <div>
+        <h1>Clima en <span id="ciudad"></span></h1>
+        <p>Temperatura: <span id="temperatura"></span> °C</p>
+        <p><span id="descripcion"></span></p>
+        <img id="icono" src="" alt="Icono del clima">
+        <div id="fechaHora"></div>
+    </div>
+
+    <script>
+        var apiKey = 'TU_API_KEY'; // Añade tu API key de OpenWeather aquí
+        var ciudad = 'Ciudad de México'; // Cambia a la ciudad que desees consultar
+        var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&appid=' + apiKey + '&units=metric&lang=es';
+
+        function obtenerClima() {
+            fetch(url)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                document.getElementById('ciudad').textContent = data.name;
+                document.getElementById('temperatura').textContent = data.main.temp;
+                document.getElementById('descripcion').textContent = data.weather[0].description;
+                document.getElementById('icono').src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
+
+                var fechaActual = new Date();
+                document.getElementById('fechaHora').textContent = 'Consulta realizada el ' + fechaActual.toLocaleDateString() + ' a las ' + fechaActual.toLocaleTimeString();
+            });
+        }
+
+        obtenerClima();
+    </script>
+</body>
+</html>
