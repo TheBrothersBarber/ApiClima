@@ -1,0 +1,52 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url('Cielo.jpg'); /* Reemplaza la URL con la ruta de tu imagen */
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background: linear-gradient(180deg, rgb(241, 144, 204, 0.9), rgb(176, 223, 250, 0.9)); /* Fondo semi-transparente */
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.5);
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.tempDisplay {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.descDisplay {
+    font-style: italic;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+#fechaHora {
+    font-size: 1rem;
+    margin-top: 20px;
+}
