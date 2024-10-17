@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estado del Clima</title>
+    <link rel="stylesheet" href="style2.css"> 
 </head>
 <body>
-    <div>
-        <h1>Clima en <span id="ciudad"></span></h1>
-        <p>Temperatura: <span id="temperatura"></span> °C</p>
-        <p><span id="descripcion"></span></p>
+    <div class="card">
+        <h1>Clima en <span id="ciudad" class="cityDisplay"></span></h1>
+        <p class="tempDisplay">Temperatura: <span id="temperatura"></span> °C</p>
+        <p class="descDisplay"><span id="descripcion"></span></p>
         <img id="icono" src="" alt="Icono del clima">
         <div id="fechaHora"></div>
     </div>
 
-    <script>
+    <script> 
         var apiKey = 'e1ee2e2b239e3c1782f4d905c76588db'; // Añade tu API key de OpenWeather aquí
         var ciudad = 'Ciudad de México'; // Cambia a la ciudad que desees consultar
         var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&appid=' + apiKey + '&units=metric&lang=es';
