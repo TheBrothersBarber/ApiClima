@@ -1,12 +1,13 @@
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    background-image: url('Cielo.jpg'); /* Reemplaza la URL con la ruta de tu imagen */
+    background-image: url('Cielo.jpg'); 
     background-size: cover;
     background-position: center;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; 
     height: 100vh;
 }
 
@@ -49,4 +50,44 @@ img {
 #fechaHora {
     font-size: 1rem;
     margin-top: 20px;
+}
+
+
+.buscador {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inputCiudad {
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 200px;
+}
+
+#inputCiudad:focus {
+    border-color: rgb(241, 144, 204);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: rgb(241, 144, 204);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0; 
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgb(200, 120, 180);
+}
+
+button:focus {
+    outline: none;
 }

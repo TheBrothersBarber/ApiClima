@@ -4,26 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estado del Clima</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="card">
         <h1>Clima en <span id="ciudad" class="cityDisplay"></span></h1>
         <p class="tempDisplay">Temperatura: <span id="temperatura"></span> °C</p>
         <p class="descDisplay"><span id="descripcion"></span></p>
+        <p class="rainDisplay">Lluvia: <span id="lluvia"></span></p>
         <img id="icono" src="" alt="Icono del clima">
         <div id="fechaHora"></div>
     </div>
 
+    <!-- Formulario para buscar una ciudad -->
+    <div class="buscador">
+        <form id="buscarCiudadForm">
+            <input type="text" id="inputCiudad" placeholder="Ingresa el nombre de la ciudad">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
     <script>
         var apiKey = 'e1ee2e2b239e3c1782f4d905c76588db'; // Añade tu API key de OpenWeather aquí
-        var ciudad = 'Ciudad de México'; // Cambia a la ciudad que desees consultar
-        var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&appid=' + apiKey + '&units=metric&lang=es';
 
-        function obtenerClima() {
+        //buscador
+        function obtenerClima(ciudad) {
+            var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + ciudad + '&appid=' + apiKey + '&units=metric&lang=es';
+
             fetch(url)
             .then(function(response) {
-                return response.json();
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    alert('No se pudo encontrar la ciudad. Intenta nuevamente.');
+                    throw new Error('Ciudad no encontrada');
+                }
             })
             .then(function(data) {
                 document.getElementById('ciudad').textContent = data.name;
@@ -31,12 +46,34 @@
                 document.getElementById('descripcion').textContent = data.weather[0].description;
                 document.getElementById('icono').src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
 
+                // Verificar si hay datos de lluvia
+                if (data.rain && data.rain['1h']) {
+                    document.getElementById('lluvia').textContent = data.rain['1h'] + ' mm en la última hora';
+                } else {
+                    document.getElementById('lluvia').textContent = 'Sin datos de lluvia';
+                }
+
                 var fechaActual = new Date();
                 document.getElementById('fechaHora').textContent = 'Consulta realizada el ' + fechaActual.toLocaleDateString() + ' a las ' + fechaActual.toLocaleTimeString();
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
             });
         }
 
-        obtenerClima();
+        
+        document.getElementById('buscarCiudadForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            var ciudad = document.getElementById('inputCiudad').value; 
+            if (ciudad) {
+                obtenerClima(ciudad); 
+            } else {
+                alert('Por favor, ingresa una ciudad.');
+            }
+        });
+
+      
+        obtenerClima('Ciudad de México');
     </script>
 </body>
 </html>
